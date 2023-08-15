@@ -1,8 +1,12 @@
 using Domain.Context;
+using Domain.Repositories.Class;
+using Domain.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

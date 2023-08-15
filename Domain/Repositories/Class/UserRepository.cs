@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repositories.Class;
 
-public class UserRepository : IUserRepository
+public sealed class UserRepository : IUserRepository
 {
 	private readonly ApplicationDbContext _context;
 
