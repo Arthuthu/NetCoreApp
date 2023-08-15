@@ -1,7 +1,8 @@
 ﻿using Application.Services.Interface;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-
+using WebUi.Dto;
+using WebUi.Mapper;
 
 namespace WebUi.Controllers.v1;
 
@@ -44,11 +45,11 @@ public class UserController : ControllerBase
 
 	[HttpPost]
 	[Route("/post")]
-	public async Task<IActionResult> Post(User user, CancellationToken cancellationToken)
+	public async Task<IActionResult> Post(UserRequest user, CancellationToken cancellationToken)
 	{
 		try
 		{
-			await _userService.Create(user, cancellationToken);
+			await _userService.Create(user.MapDtoToDomain(), cancellationToken);
 		}
 		catch (Exception ex)
 		{

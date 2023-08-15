@@ -5,7 +5,7 @@ namespace WebUi.Mapper;
 
 public static class DtoToDomain
 {
-	public static User MapDtoToDomain(this UserDto userDto)
+	public static User MapDtoToDomain(this UserRequest userDto)
 	{
 		return new User
 		{
