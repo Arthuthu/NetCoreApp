@@ -1,5 +1,14 @@
-﻿namespace Domain.Context;
+﻿using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
-public class ApplicationDbContext
+namespace Domain.Context;
+
+public class ApplicationDbContext : DbContext
 {
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+        
+    }
+
+    public DbSet<User> Users { get; set; }
 }
