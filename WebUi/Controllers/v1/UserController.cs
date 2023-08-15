@@ -1,9 +1,10 @@
 ﻿using Application.Services.User.Interface;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using WebUi.Dto;
-using WebUi.Mapper;
+using WebUi.Mapper.User;
 
 namespace WebUi.Controllers.v1;
 
@@ -34,6 +35,7 @@ public class UserController : ControllerBase
 		return Ok(users);
 	}
 
+	[Authorize]
 	[HttpGet]
 	[Route("/getbyid/{id:guid}")]
 	[ProducesResponseType(typeof(UserModel), 200)]
