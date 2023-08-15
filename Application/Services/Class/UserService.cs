@@ -32,13 +32,13 @@ public sealed class UserService : IUserService
         await _userRepository.Create(user, cancellationToken);
     }
 
-    public async Task Update(User user, CancellationToken cancellationToken)
+    public async Task<bool> Update(User user, CancellationToken cancellationToken)
     {
-        await _userRepository.Update(user, cancellationToken);
+        return await _userRepository.Update(user, cancellationToken);
     }
 
-    public async Task Delete(User user, CancellationToken cancellationToken)
+    public async Task<bool> Delete(Guid id, CancellationToken cancellationToken)
     {
-        await _userRepository.Delete(user, cancellationToken);
+        return await _userRepository.Delete(id, cancellationToken);
     }
 }

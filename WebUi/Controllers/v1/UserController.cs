@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.Services.Interface;
+using Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace WebUi.Controllers.v1;
@@ -7,30 +9,77 @@ namespace WebUi.Controllers.v1;
 [ApiController]
 public class UserController : ControllerBase
 {
-	[HttpGet]
-	public IEnumerable<string> Get()
+	private readonly IUserService _userService;
+	private readonly ILogger<UserController> _logger;
+
+	public UserController(IUserService userService, ILogger<UserController> logger)
 	{
-		return new string[] { "value1", "value2" };
+		_userService = userService;
+		_logger = logger;
 	}
 
-	[HttpGet("{id}")]
-	public string Get(int id)
+	[HttpGet]
+	[Route("/get")]
+	public async Task<IActionResult> Get(CancellationToken cancellationToken)
 	{
-		return "value";
+		List<User>? users = await _userService.Get(cancellationToken);
+
+		if (users is null)
+			return NotFound();
+
+		return Ok(users);
+	}
+
+	[HttpGet]
+	[Route("/getbyid/{id:guid}")]
+	public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
+	{
+		User? user = await _userService.Get(id, cancellationToken);
+
+		if (user is null)
+			return NotFound();
+
+		return Ok(user);
 	}
 
 	[HttpPost]
-	public void Post([FromBody] string value)
+	[Route("/post")]
+	public async Task<IActionResult> Post(User user, CancellationToken cancellationToken)
 	{
+		try
+		{
+			await _userService.Create(user, cancellationToken);
+		}
+		catch (Exception ex)
+		{
+			_logger.LogError("Something went wrong when creating the user", ex);
+			return BadRequest(ex.Message);
+		}
+
+		return Ok(user);
 	}
 
-	[HttpPut("{id}")]
-	public void Put(int id, [FromBody] string value)
+	[HttpPut]
+	[Route("/update")]
+	public async Task<IActionResult> Put(User user, CancellationToken cancellationToken)
 	{
+		bool userWasCreated = await _userService.Update(user, cancellationToken);
+
+		if (userWasCreated is false)
+			return NotFound("User was not found");
+
+		return Ok(user);
 	}
 
-	[HttpDelete("{id}")]
-	public void Delete(int id)
+	[HttpDelete]
+	[Route("/delete/{id:guid}")]
+	public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
 	{
+		bool userWasDeleted = await _userService.Delete(id, cancellationToken);
+
+		if (userWasDeleted is false)
+			return NotFound("User was not found");
+
+		return Ok("User was successfully deleted");
 	}
 }

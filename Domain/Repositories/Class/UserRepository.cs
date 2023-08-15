@@ -48,9 +48,9 @@ public sealed class UserRepository : IUserRepository
 		return true;
 	}
 
-	public async Task<bool> Delete(User user, CancellationToken cancellationToken)
+	public async Task<bool> Delete(Guid id, CancellationToken cancellationToken)
 	{
-		int affectedRows = await _context.Users.Where(u => u.Id == user.Id)
+		int affectedRows = await _context.Users.Where(u => u.Id == id)
 									.ExecuteDeleteAsync(cancellationToken);
 
 		await _context.SaveChangesAsync(cancellationToken);
