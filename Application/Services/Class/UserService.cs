@@ -29,6 +29,8 @@ public sealed class UserService : IUserService
 
     public async Task Create(User user, CancellationToken cancellationToken)
     {
+        user.Id = Guid.NewGuid();
+
         await _userRepository.Create(user, cancellationToken);
     }
 
