@@ -1,5 +1,6 @@
 ﻿using Application.Services.Interface;
 using Domain.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using WebUi.Dto;
 using WebUi.Mapper;
@@ -21,6 +22,8 @@ public class UserController : ControllerBase
 
 	[HttpGet]
 	[Route("/get")]
+	[ProducesResponseType(typeof(List<User>), 200)]
+	[ProducesResponseType(404)]
 	public async Task<IActionResult> Get(CancellationToken cancellationToken)
 	{
 		List<User>? users = await _userService.Get(cancellationToken);
@@ -33,6 +36,8 @@ public class UserController : ControllerBase
 
 	[HttpGet]
 	[Route("/getbyid/{id:guid}")]
+	[ProducesResponseType(typeof(User), 200)]
+	[ProducesResponseType(404)]
 	public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
 	{
 		User? user = await _userService.Get(id, cancellationToken);
@@ -45,6 +50,8 @@ public class UserController : ControllerBase
 
 	[HttpPost]
 	[Route("/post")]
+	[ProducesResponseType( 200)]
+	[ProducesResponseType(400)]
 	public async Task<IActionResult> Post(UserRequest user, CancellationToken cancellationToken)
 	{
 		try
@@ -62,6 +69,8 @@ public class UserController : ControllerBase
 
 	[HttpPut]
 	[Route("/update")]
+	[ProducesResponseType(typeof(User),200)]
+	[ProducesResponseType(404)]
 	public async Task<IActionResult> Put(User user, CancellationToken cancellationToken)
 	{
 		bool userWasCreated = await _userService.Update(user, cancellationToken);
@@ -74,6 +83,8 @@ public class UserController : ControllerBase
 
 	[HttpDelete]
 	[Route("/delete/{id:guid}")]
+	[ProducesResponseType(200)]
+	[ProducesResponseType(404)]
 	public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
 	{
 		bool userWasDeleted = await _userService.Delete(id, cancellationToken);
