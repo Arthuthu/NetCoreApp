@@ -1,4 +1,4 @@
-﻿using Application.Services.Interface;
+﻿using Application.Services.User.Interface;
 using Domain.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ using WebUi.Mapper;
 
 namespace WebUi.Controllers.v1;
 
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
 public class UserController : ControllerBase
 {
@@ -22,11 +22,11 @@ public class UserController : ControllerBase
 
 	[HttpGet]
 	[Route("/get")]
-	[ProducesResponseType(typeof(List<User>), 200)]
+	[ProducesResponseType(typeof(List<UserModel>), 200)]
 	[ProducesResponseType(404)]
 	public async Task<IActionResult> Get(CancellationToken cancellationToken)
 	{
-		List<User>? users = await _userService.Get(cancellationToken);
+		List<UserModel>? users = await _userService.Get(cancellationToken);
 
 		if (users is null)
 			return NotFound();
@@ -36,11 +36,11 @@ public class UserController : ControllerBase
 
 	[HttpGet]
 	[Route("/getbyid/{id:guid}")]
-	[ProducesResponseType(typeof(User), 200)]
+	[ProducesResponseType(typeof(UserModel), 200)]
 	[ProducesResponseType(404)]
 	public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
 	{
-		User? user = await _userService.Get(id, cancellationToken);
+		UserModel? user = await _userService.Get(id, cancellationToken);
 
 		if (user is null)
 			return NotFound();
@@ -69,9 +69,9 @@ public class UserController : ControllerBase
 
 	[HttpPut]
 	[Route("/update")]
-	[ProducesResponseType(typeof(User),200)]
+	[ProducesResponseType(typeof(UserModel),200)]
 	[ProducesResponseType(404)]
-	public async Task<IActionResult> Put(User user, CancellationToken cancellationToken)
+	public async Task<IActionResult> Put(UserModel user, CancellationToken cancellationToken)
 	{
 		bool userWasCreated = await _userService.Update(user, cancellationToken);
 

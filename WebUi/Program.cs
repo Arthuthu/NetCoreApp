@@ -1,6 +1,12 @@
+using Application.Services.Auth.Class;
+using Application.Services.Auth.Interface;
+using Application.Services.User.Class;
+using Application.Services.User.Interface;
 using Domain.Context;
-using Domain.Repositories.Class;
-using Domain.Repositories.Interface;
+using Domain.Repositories.Auth.Class;
+using Domain.Repositories.Auth.Interface;
+using Domain.Repositories.User.Class;
+using Domain.Repositories.User.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -10,6 +16,10 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {

@@ -1,8 +1,8 @@
-﻿using Application.Services.Interface;
+﻿using Application.Services.User.Interface;
 using Domain.Models;
-using Domain.Repositories.Interface;
+using Domain.Repositories.User.Interface;
 
-namespace Application.Services.Class;
+namespace Application.Services.User.Class;
 
 public sealed class UserService : IUserService
 {
@@ -13,28 +13,28 @@ public sealed class UserService : IUserService
         _userRepository = userRepository;
     }
 
-    public async Task<List<User>?> Get(CancellationToken cancellationToken)
+    public async Task<List<UserModel>?> Get(CancellationToken cancellationToken)
     {
-        List<User>? users = await _userRepository.Get(cancellationToken);
+        List<UserModel>? users = await _userRepository.Get(cancellationToken);
 
         return users is not null ? users : null;
     }
 
-    public async Task<User?> Get(Guid id, CancellationToken cancellationToken)
+    public async Task<UserModel?> Get(Guid id, CancellationToken cancellationToken)
     {
-        User? user = await _userRepository.Get(id, cancellationToken);
+        UserModel? user = await _userRepository.Get(id, cancellationToken);
 
         return user is not null ? user : null;
     }
 
-    public async Task Create(User user, CancellationToken cancellationToken)
+    public async Task Create(UserModel user, CancellationToken cancellationToken)
     {
         user.Id = Guid.NewGuid();
 
         await _userRepository.Create(user, cancellationToken);
     }
 
-    public async Task<bool> Update(User user, CancellationToken cancellationToken)
+    public async Task<bool> Update(UserModel user, CancellationToken cancellationToken)
     {
         return await _userRepository.Update(user, cancellationToken);
     }
