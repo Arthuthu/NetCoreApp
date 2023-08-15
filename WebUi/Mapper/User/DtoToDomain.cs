@@ -11,6 +11,7 @@ public static class DtoToDomain
         {
             Username = userDto.Username,
             Password = userDto.Password,
+            Role = userDto.Role
         };
     }
 }

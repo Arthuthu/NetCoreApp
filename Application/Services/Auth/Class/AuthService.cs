@@ -39,7 +39,8 @@ public class AuthService : IAuthService
 
 		var claims = new[]
 		{
-			new Claim(ClaimTypes.NameIdentifier, user.Username)
+			new Claim(ClaimTypes.NameIdentifier, user.Username),
+			new Claim(ClaimTypes.Role, user.Role)
 		};
 
 		JwtSecurityToken token = new JwtSecurityToken(_config["Jwt:Issuer"],

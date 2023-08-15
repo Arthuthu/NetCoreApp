@@ -24,7 +24,7 @@ public class AuthController : ControllerBase
 	[Route("/login")]
 	[ProducesResponseType( typeof(string),200)]
 	[ProducesResponseType(404)]
-	public async Task<IActionResult> Login(UserRequest userLogin, CancellationToken cancellationToken)
+	public async Task<IActionResult> Login(LoginRequest userLogin, CancellationToken cancellationToken)
 	{
 		string? token = await _authService.Login(userLogin.MapDtoToDomain(), cancellationToken);
 
@@ -33,6 +33,4 @@ public class AuthController : ControllerBase
 
 		return Ok(token);
 	}
-
-
 }
