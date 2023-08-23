@@ -61,10 +61,12 @@ public class UserController : ControllerBase
 		try
 		{
 			await _userService.Create(user.MapDtoToDomain(), cancellationToken);
+			_logger.LogInformation("User {@Username} was successfully created", user.Username);
+
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError("Something went wrong when creating the user", ex);
+			_logger.LogError(ex.Message, ex);
 			return BadRequest(ex.Message);
 		}
 
