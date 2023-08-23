@@ -27,6 +27,7 @@ public class UserController : ControllerBase
 	[HttpGet]
 	[Route("/get")]
 	[ProducesResponseType(typeof(List<UserModel>), 200)]
+	[ProducesResponseType(401)]
 	[ProducesResponseType(404)]
 	public async Task<IActionResult> Get(CancellationToken cancellationToken)
 	{
@@ -42,6 +43,7 @@ public class UserController : ControllerBase
 	[HttpGet]
 	[Route("/getbyid/{id:guid}")]
 	[ProducesResponseType(typeof(UserModel), 200)]
+	[ProducesResponseType(401)]
 	[ProducesResponseType(404)]
 	public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
 	{
@@ -75,6 +77,7 @@ public class UserController : ControllerBase
 	[HttpPut]
 	[Route("/update")]
 	[ProducesResponseType(typeof(UserModel),200)]
+	[ProducesResponseType(401)]
 	[ProducesResponseType(404)]
 	public async Task<IActionResult> Put(UserModel user, CancellationToken cancellationToken)
 	{
@@ -89,6 +92,7 @@ public class UserController : ControllerBase
 	[HttpDelete]
 	[Route("/delete/{id:guid}")]
 	[ProducesResponseType(200)]
+	[ProducesResponseType(401)]
 	[ProducesResponseType(404)]
 	public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
 	{
