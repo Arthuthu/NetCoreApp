@@ -1,6 +1,6 @@
 ﻿using Application.Services.User.Interface;
 using Domain.Models;
-using Domain.Repositories.User.Interface;
+using Domain.Repositories.User;
 
 namespace Application.Services.User.Class;
 

@@ -1,9 +1,8 @@
 ﻿using Domain.Context;
 using Domain.Models;
-using Domain.Repositories.User.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace Domain.Repositories.User.Class;
+namespace Domain.Repositories.User;
 
 public sealed class UserRepository : IUserRepository
 {

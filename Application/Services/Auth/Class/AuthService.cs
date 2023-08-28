@@ -1,6 +1,6 @@
 ﻿using Application.Services.Auth.Interface;
 using Domain.Models;
-using Domain.Repositories.Auth.Interface;
+using Domain.Repositories.Auth;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
