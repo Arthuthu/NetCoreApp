@@ -30,7 +30,7 @@ public sealed class UserRepository : IUserRepository
     public async Task Create(UserModel user, CancellationToken cancellationToken)
     {
         await _context.Users.AddAsync(user, cancellationToken);
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<bool> Update(UserModel user, CancellationToken cancellationToken)
@@ -54,6 +54,6 @@ public sealed class UserRepository : IUserRepository
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        return affectedRows > 0 ? true : false;
+		return affectedRows > 0;
     }
 }

@@ -1,7 +1,5 @@
-﻿using Application.Services.Auth.Class;
-using Application.Services.Auth.Interface;
-using Application.Services.User.Class;
-using Application.Services.User.Interface;
+﻿using Application.Services.Auth;
+using Application.Services.User;
 using Domain.Context;
 using Domain.Repositories.Auth;
 using Domain.Repositories.User;

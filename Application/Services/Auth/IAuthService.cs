@@ -1,6 +1,6 @@
 ﻿using Domain.Models;
 
-namespace Application.Services.Auth.Interface
+namespace Application.Services.Auth
 {
     public interface IAuthService
     {

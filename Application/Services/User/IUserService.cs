@@ -1,6 +1,6 @@
 ﻿using Domain.Models;
 
-namespace Application.Services.User.Interface
+namespace Application.Services.User
 {
     public interface IUserService
     {

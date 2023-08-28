@@ -1,8 +1,7 @@
-﻿using Application.Services.User.Interface;
-using Domain.Models;
+﻿using Domain.Models;
 using Domain.Repositories.User;
 
-namespace Application.Services.User.Class;
+namespace Application.Services.User;
 
 public sealed class UserService : IUserService
 {
