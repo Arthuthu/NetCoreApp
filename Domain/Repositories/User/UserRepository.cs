@@ -4,13 +4,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Repositories.User;
 
-public sealed class UserRepository : IUserRepository
+public class UserRepository : IUserRepository
 {
     private readonly ApplicationDbContext _context;
 
     public UserRepository(ApplicationDbContext context)
     {
         _context = context;
+    }
+
+    public UserRepository()
+    {
+        
     }
 
     public async Task<List<UserModel>?> Get(CancellationToken cancellationToken)
