@@ -8,7 +8,6 @@ builder.Services
 	.AddApplicationDependencyInjection()
 	.AddApplicationDbContext(config)
 	.AddAuthenticationAndAuthorization(config)
-	.AddDistributedMemoryCache()
 	.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

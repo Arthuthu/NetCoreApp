@@ -21,8 +21,6 @@ public static class DependencyInjection
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<IAuthService, AuthService>();
 
-		services.AddSingleton<IConnectionMultiplexer>(_ => ConnectionMultiplexer.Connect("localhost"));
-
 		return services;
 	}
 
@@ -58,6 +56,18 @@ public static class DependencyInjection
 	});
 
 		services.AddAuthorization();
+
+		return services;
+	}
+
+	public static IServiceCollection AddRedisCaching(this IServiceCollection services,
+		IConfiguration  config)
+	{
+		services.AddStackExchangeRedisCache(options =>
+		{
+			options.Configuration = config.GetConnectionString("Redis");
+			options.InstanceName = "NetCoreApp_";
+		});
 
 		return services;
 	}
