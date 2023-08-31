@@ -13,8 +13,8 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public UserRepository()
-    {
+	public UserRepository()
+	{
         
     }
 

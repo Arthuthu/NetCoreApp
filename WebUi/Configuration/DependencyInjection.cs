@@ -28,7 +28,9 @@ public static class DependencyInjection
 	{
 		services.AddDbContext<ApplicationDbContext>(options =>
 		{
-			options.UseSqlServer(config.GetConnectionString("NetCoreDatabase"));
+			options.UseSqlServer(config.GetConnectionString("NetCoreDatabase"), 
+				assembly => assembly.MigrationsAssembly(typeof(ApplicationDbContext)
+				.Assembly.FullName));
 		});
 
 		return services;

@@ -12,4 +12,9 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<UserModel> Users { get; set; }
 
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+	}
 }

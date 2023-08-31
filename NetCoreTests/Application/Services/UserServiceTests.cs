@@ -11,12 +11,12 @@ public class UserServiceTests
 {
     private readonly UserService _sut;
     private readonly IUserRepository _userRepository = Substitute.For<IUserRepository>();
-    private readonly Fixture _fixture = new Fixture();
+	private readonly Fixture _fixture = new();
 
     public UserServiceTests()
     {
-        _sut = new UserService(_userRepository);
-    }
+		_sut = new UserService(_userRepository);
+	}
 
     [Fact]
     public async void GetUserById_ShouldReturnUser_WhenIdIsValid()
