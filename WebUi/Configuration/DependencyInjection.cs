@@ -6,6 +6,7 @@ using Domain.Repositories.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis;
 using System.Text;
 
 namespace WebUi.Configuration;
@@ -19,6 +20,8 @@ public static class DependencyInjection
 
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<IAuthService, AuthService>();
+
+		services.AddSingleton<IConnectionMultiplexer>(_ => ConnectionMultiplexer.Connect("localhost"));
 
 		return services;
 	}
