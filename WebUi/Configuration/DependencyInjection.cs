@@ -63,6 +63,8 @@ public static class DependencyInjection
 	public static IServiceCollection AddRedisCaching(this IServiceCollection services,
 		IConfiguration  config)
 	{
+		services.AddMemoryCache();
+
 		services.AddStackExchangeRedisCache(options =>
 		{
 			options.Configuration = config.GetConnectionString("Redis");
