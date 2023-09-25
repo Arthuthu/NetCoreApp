@@ -7,7 +7,8 @@ var config = builder.Configuration;
 builder.Services
 	.AddApplicationDependencyInjection()
 	.AddApplicationDbContext(config)
-	.AddAuthenticationAndAuthorization(config)
+	.AddCorsPolicy()
+    .AddAuthenticationAndAuthorization(config)
 	.AddRedisCaching(config)
 	.AddControllers();
 
@@ -27,6 +28,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
+app.UseCors("OpenCorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

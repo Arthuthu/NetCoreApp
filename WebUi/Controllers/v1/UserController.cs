@@ -26,23 +26,23 @@ public class UserController : ControllerBase
 		_cache = cache;
 	}
 
-	[HttpGet, Route("/get"), Authorize(Roles = "User")]
+	[HttpGet, Route("/get")]
 	[ProducesResponseType(typeof(List<UserModel>), 200),
 	ProducesResponseType(401),
 	ProducesResponseType(404)]
 	public async Task<IActionResult> Get(CancellationToken cancellationToken)
 	{
-		var cachedUsers = await _cache.GetRecordAsync<List<UserModel>>("users");
+		//var cachedUsers = await _cache.GetRecordAsync<List<UserModel>>("users");
 
-		if (cachedUsers is not null)
-			return Ok(cachedUsers);
+		//if (cachedUsers is not null)
+		//	return Ok(cachedUsers);
 
 		List<UserModel>? users = await _userService.Get(cancellationToken);
 
 		if (users is null)
 			return NotFound();
 
-		await _cache.SetRecordAsync("users", users, cancellationToken);
+		//await _cache.SetRecordAsync("users", users, cancellationToken);
 
 		return Ok(users);
 	}
