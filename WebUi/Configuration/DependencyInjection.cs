@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
 using System.Text;
+using WebUi.Middlewares;
 
 namespace WebUi.Configuration;
 
@@ -20,6 +21,8 @@ public static class DependencyInjection
 
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<IAuthService, AuthService>();
+
+		services.AddTransient<GlobalExceptionHandlingMiddleware>();
 
 		return services;
 	}

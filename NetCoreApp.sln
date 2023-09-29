@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A03C6420-365C-4AEB-A4B7-3B32869769B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreTests", "NetCoreTests\NetCoreTests.csproj", "{107E85DF-46C2-4A80-A049-32D862FDCA80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreTests", "NetCoreTests\NetCoreTests.csproj", "{107E85DF-46C2-4A80-A049-32D862FDCA80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

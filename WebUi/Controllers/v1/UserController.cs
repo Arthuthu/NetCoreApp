@@ -75,7 +75,7 @@ public class UserController : ControllerBase
 		try
 		{
 			await _userService.Create(user.MapDtoToDomain(), cancellationToken);
-			await _cache.RemoveAsync("users", cancellationToken);
+			//await _cache.RemoveAsync("users", cancellationToken);
 			_logger.LogInformation("User {@Username} was successfully created", user.Username);
 
 		}
@@ -119,5 +119,11 @@ public class UserController : ControllerBase
 		await _cache.RemoveAsync("users", cancellationToken);
 
 		return Ok("User was successfully deleted");
+	}
+
+	[HttpGet, Route("/getexception")]
+	public IActionResult GetException(CancellationToken cancellationToken)
+	{
+		throw new Exception("Exception teste");
 	}
 }
